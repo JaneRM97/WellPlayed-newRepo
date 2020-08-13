@@ -25,6 +25,9 @@ public class Door : InteractableItemBase {
     public override void OnInteractAnimation(Animator animator)
     {
         animator.SetTrigger("tr_open");
+        if(_animator.GetBool("isopen")){
+            animator.SetTrigger("tr_close");
+        }
     }
 
     public override void OnInteract()
