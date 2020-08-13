@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/LowPolyNature/Scenes/Simple.unity
     guid: 55a0b71e85d58e34ea55f5f65a929097
+  - enabled: 1
+    path: Assets/WorkingVersion.unity
+    guid: 80554c2d1560549f3a98f69af51967ad
   m_configObjects: {}
