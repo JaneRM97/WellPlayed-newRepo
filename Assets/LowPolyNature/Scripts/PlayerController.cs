@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private Animator _animator;
 
+    public float moveSpeed = 3f;
+
     private CharacterController _characterController;
 
     private float Gravity = 20.0f;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Vector3 _moveDirection = Vector3.zero;
 
     private InventoryItemBase mCurrentItem = null;
-
+    
     private HealthBar mHealthBar;
 
     private HealthBar mFoodBar;
@@ -412,12 +414,13 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
 
             // Get Input for axis
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
+            float H = Input.GetAxis("Horizontal");
+            float U = Input.GetAxis("Vertical");
 
             // Calculate the forward vector
-            Vector3 camForward_Dir = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-            Vector3 move = v * camForward_Dir + h * Camera.main.transform.right;
+            Vector3 camForward_Dir = Vector3.Scale(Camera.main.transform.forward, new Vector3(0,0,1)).normalized;
+            Vector3 move = U*camForward_Dir+H*Camera.main.transform.right;
+           
 
             if (move.magnitude > 1f) move.Normalize();
 
@@ -426,7 +429,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             move = transform.InverseTransformDirection(move);
 
             // Get Euler angles
-            float turnAmount = Mathf.Atan2(move.x, move.z);
+            float turnAmount = H;
 
             transform.Rotate(0, turnAmount * RotationSpeed * Time.deltaTime, 0);
 
